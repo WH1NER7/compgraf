@@ -81,10 +81,10 @@ canvas.pack()
 canvas.bind("<Button-1>", on_canvas_click)
 
 # Listboxes to display pixel info
-color_listbox = tk.Listbox(root)
+color_listbox = tk.Listbox(root, width=40)
 color_listbox.pack(side=tk.LEFT, fill=tk.BOTH)
 
-brightness_listbox = tk.Listbox(root)
+brightness_listbox = tk.Listbox(root, width=40)
 brightness_listbox.pack(side=tk.LEFT, fill=tk.BOTH)
 
 # Button to select color
