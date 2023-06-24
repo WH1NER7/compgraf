@@ -26,6 +26,7 @@ curve_scale = 0.005
 
 clock = pygame.time.Clock()
 
+
 # Функция для рисования многоугольника
 def draw_polygon():
     glClear(GL_COLOR_BUFFER_BIT)
@@ -42,6 +43,7 @@ def draw_polygon():
     glEnd()
 
     pygame.display.flip()
+
 
 # Главный цикл
 while True:

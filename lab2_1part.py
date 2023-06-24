@@ -8,6 +8,7 @@ import math
 num_sides = 50
 num_sides_polygon = 6
 
+
 def draw_square():
     glBegin(GL_QUADS)
     glVertex2f(-0.5, -0.5)
@@ -15,6 +16,7 @@ def draw_square():
     glVertex2f(0.5, 0.5)
     glVertex2f(-0.5, 0.5)
     glEnd()
+
 
 def draw_polygon():
     radius = 0.5
@@ -27,6 +29,7 @@ def draw_polygon():
         glVertex2f(x, y)
     glEnd()
 
+
 def draw_circle():
     radius = 0.5
     angle = (2 * math.pi) / num_sides
@@ -37,6 +40,7 @@ def draw_circle():
         y = radius * math.sin(i * angle)
         glVertex2f(x, y)
     glEnd()
+
 
 def display():
     glClear(GL_COLOR_BUFFER_BIT)
@@ -65,11 +69,13 @@ def display():
 
     glFlush()
 
+
 def reshape(width, height):
     glViewport(0, 0, width, height)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     gluOrtho2D(-1.0, 1.0, -1.0, 1.0)
+
 
 def main():
     glutInit()
@@ -81,6 +87,7 @@ def main():
     glutReshapeFunc(reshape)
 
     glutMainLoop()
+
 
 if __name__ == "__main__":
     main()

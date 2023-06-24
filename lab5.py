@@ -2,18 +2,22 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import ttk, colorchooser
 
+
 def load_image(file_path):
     image = Image.open(file_path)
     return image
+
 
 def get_pixel_color(image, x, y):
     pixel = image.getpixel((x, y))
     return pixel
 
+
 def get_pixel_brightness(image, x, y):
     pixel = image.getpixel((x, y))
     brightness = sum(pixel) / 3
     return brightness
+
 
 def display_pixel_info(x, y, color_listbox, brightness_listbox):
     pixel_color = get_pixel_color(image, x, y)
@@ -21,9 +25,11 @@ def display_pixel_info(x, y, color_listbox, brightness_listbox):
     color_listbox.insert(tk.END, f"Pixel ({x}, {y}): RGB {pixel_color}")
     brightness_listbox.insert(tk.END, f"Pixel ({x}, {y}): Brightness {pixel_brightness}")
 
+
 def select_color():
     selected_color = colorchooser.askcolor(title="Select Color")[0]
     color_var.set(selected_color)
+
 
 def determine_color():
     x1 = int(x1_var.get())
@@ -32,6 +38,7 @@ def determine_color():
     pixel_brightness = get_pixel_brightness(image, x1, y1)
     color_listbox.insert(tk.END, f"Pixel ({x1}, {y1}): RGB {pixel_color}")
     brightness_listbox.insert(tk.END, f"Pixel ({x1}, {y1}): Brightness {pixel_brightness}")
+
 
 def change_color_in_selection():
     x1 = int(x1_var.get())
@@ -44,6 +51,7 @@ def change_color_in_selection():
     modified_image = modify_image(image, x1, y1, x2, y2, target_color)
     display_image(modified_image)
 
+
 def modify_image(image, x1, y1, x2, y2, target_color):
     modified_image = image.copy()
     for x in range(x1, x2 + 1):
@@ -51,14 +59,17 @@ def modify_image(image, x1, y1, x2, y2, target_color):
             modified_image.putpixel((x, y), target_color)
     return modified_image
 
+
 def display_image(image):
     photo = ImageTk.PhotoImage(image)
     canvas.create_image(0, 0, anchor="nw", image=photo)
     canvas.photo = photo
 
+
 def on_canvas_click(event):
     x, y = event.x, event.y
     display_pixel_info(x, y, color_listbox, brightness_listbox)
+
 
 def determine_pixel_color():
     x = int(pixel_x_var.get())
@@ -67,6 +78,7 @@ def determine_pixel_color():
     pixel_brightness = get_pixel_brightness(image, x, y)
     color_listbox.insert(tk.END, f"Pixel ({x}, {y}): RGB {pixel_color}")
     brightness_listbox.insert(tk.END, f"Pixel ({x}, {y}): Brightness {pixel_brightness}")
+
 
 root = tk.Tk()
 root.title("Image Viewer")
