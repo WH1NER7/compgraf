@@ -52,6 +52,15 @@ def change_color_in_selection():
     display_image(modified_image)
 
 
+def save_selection():
+    x1 = int(x1_var.get())
+    y1 = int(y1_var.get())
+    x2 = int(x2_var.get())
+    y2 = int(y2_var.get())
+    selection = image.crop((x1, y1, x2+1, y2+1))
+    selection.save("selection.bmp")
+
+
 def modify_image(image, x1, y1, x2, y2, target_color):
     modified_image = image.copy()
     for x in range(x1, x2 + 1):
@@ -138,6 +147,9 @@ color_entry.pack()
 # Button to change color in selection
 change_color_button = ttk.Button(root, text="Change Color", command=change_color_in_selection)
 change_color_button.pack()
+
+save_button = ttk.Button(root, text="Save Selection", command=save_selection)
+save_button.pack()
 
 # Pixel color determination form
 pixel_color_frame = ttk.Frame(root)
